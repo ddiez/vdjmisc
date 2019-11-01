@@ -1,0 +1,97 @@
+---
+title: "introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width = 7,
+  fig.height = 4,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(dplyr)
+library(ggplot2)
+library(vdjmisc)
+library(cowplot)
+theme_set(cowplot::theme_cowplot())
+```
+
+
+```{r}
+f <- list.files(file.path(system.file(package = "vdjtools"), "extdata/10x"), full.names = TRUE)
+f
+```
+
+## Reading one file
+
+```{r warning=FALSE}
+vdj <- read_vdj_10x(f[1])
+vdj <- vdj %>% mutate(cell_index = barcode)
+vdj
+```
+
+```{r}
+vdj_tidy <- tidy_vdj_10x(vdj)
+vdj_tidy
+```
+
+
+```{r}
+plot_vdj_usage(vdj_tidy)
+```
+
+## Reading a batch of files
+
+```{r}
+path <- file.path(system.file(package = "vdjtools"), "extdata/10x")
+path
+```
+
+
+```{r warning=FALSE}
+vdj <- read_vdj_10x_batch(path, extension = "csv.gz")
+head(vdj)
+```
+
+```{r}
+vdj <- vdj %>% mutate(samplename = sub(".csv.gz", "", basename(filename)))
+head(vdj)
+```
+
+```{r}
+vdj <- vdj %>% mutate(cell_index = paste(samplename, barcode, sep = ":"))
+head(vdj)
+```
+
+```{r}
+vdj_tidy <- tidy_vdj_10x(vdj)
+head(vdj_tidy)
+```
+
+```{r}
+plot_vdj_usage(vdj_tidy)
+```
+
+
+```{r}
+vdj_list <- split(vdj, vdj$samplename)
+vdj_list <- lapply(vdj_list, tidy_vdj_10x)
+```
+
+```{r fig.height=8}
+pl <- lapply(vdj_list, plot_vdj_usage)
+
+pl <- lapply(names(vdj_list), function(name) {
+  plot_vdj_usage(vdj_list[[name]], main = name)
+})
+cowplot::plot_grid(plotlist = pl)
+```
+
