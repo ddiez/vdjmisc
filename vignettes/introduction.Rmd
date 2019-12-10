@@ -26,7 +26,7 @@ theme_set(cowplot::theme_cowplot())
 
 
 ```{r}
-f <- list.files(file.path(system.file(package = "vdjtools"), "extdata/10x"), full.names = TRUE)
+f <- list.files(file.path(system.file(package = "vdjmisc"), "extdata/10x"), full.names = TRUE)
 f
 ```
 
@@ -37,6 +37,7 @@ vdj <- read_vdj_10x(f[1])
 vdj <- vdj %>% mutate(cell_index = barcode)
 vdj
 ```
+
 
 ```{r}
 vdj_tidy <- tidy_vdj_10x(vdj)
@@ -51,7 +52,7 @@ plot_vdj_usage(vdj_tidy)
 ## Reading a batch of files
 
 ```{r}
-path <- file.path(system.file(package = "vdjtools"), "extdata/10x")
+path <- file.path(system.file(package = "vdjmisc"), "extdata/10x")
 path
 ```
 
