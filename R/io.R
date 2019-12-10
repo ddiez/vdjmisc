@@ -38,7 +38,6 @@ read_vdj_10x_batch <- function(path = ".", extension = "csv", productive.only = 
 #' @param min.score if not NULL, return only entries with this score or greater.
 #' @param paired return only entries with paired (alpha and beta) VJ information.
 #'
-#' @return
 #' @export
 #'
 read_vdjdb_full <- function(filename, min.score = NULL, paired = TRUE) {

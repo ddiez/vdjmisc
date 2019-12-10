@@ -13,9 +13,6 @@ read_vdjdb_full(filename, min.score = NULL, paired = TRUE)
 
 \item{paired}{return only entries with paired (alpha and beta) VJ information.}
 }
-\value{
-
-}
 \description{
 read_vdjdb_full
 }
