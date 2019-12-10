@@ -3,6 +3,7 @@
 export(plot_vdj_usage)
 export(read_vdj_10x)
 export(read_vdj_10x_batch)
+export(read_vdjdb_full)
 export(remove_vdj_doublets)
 export(tidy_vdj_10x)
 import(dplyr)
