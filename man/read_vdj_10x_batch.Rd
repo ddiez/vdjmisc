@@ -4,8 +4,7 @@
 \alias{read_vdj_10x_batch}
 \title{read_vdj_10x_batch}
 \usage{
-read_vdj_10x_batch(path = ".", extension = "csv",
-  productive.only = TRUE)
+read_vdj_10x_batch(path = ".", extension = "csv", productive.only = TRUE)
 }
 \arguments{
 \item{path}{path name to the folder.}

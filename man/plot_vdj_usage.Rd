@@ -4,10 +4,19 @@
 \alias{plot_vdj_usage}
 \title{plot_vdj_usage}
 \usage{
-plot_vdj_usage(x, cols = NULL, main = "", subtitle = paste(nrow(x),
-  "sequences"), size = 3, alpha = 0.4, fill = "violetred",
-  fill.vdj = "limegreen", axis.width = 0.3, expand.x = 0.1,
-  expand.y = 5)
+plot_vdj_usage(
+  x,
+  cols = NULL,
+  main = "",
+  subtitle = paste(nrow(x), "sequences"),
+  size = 3,
+  alpha = 0.4,
+  fill = "violetred",
+  fill.vdj = "limegreen",
+  axis.width = 0.3,
+  expand.x = 0.1,
+  expand.y = 5
+)
 }
 \arguments{
 \item{x}{data.frame}

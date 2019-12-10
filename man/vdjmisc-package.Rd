@@ -9,7 +9,7 @@
 Miscellaneus Tools for The Analysis of Immune Repertoires.
 }
 \author{
-\strong{Maintainer}: Diego Diez \email{diego10ruiz@gmail.com} (0000-0002-2325-4893)
+\strong{Maintainer}: Diego Diez \email{diego10ruiz@gmail.com} (\href{https://orcid.org/0000-0002-2325-4893}{ORCID})
 
 }
 \keyword{internal}
