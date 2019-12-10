@@ -11,19 +11,19 @@
 #'
 tidy_vdj_10x <- function(x, by = "cell_index", drop.na = TRUE, drop.multi = TRUE) {
   if (drop.multi) {
-    index <- x %>% filter(chain == "Multi") %>% pull(cell_index)
-    x <- x %>% filter(! cell_index %in% index)
+    index <- x %>% filter(.data$chain == "Multi") %>% pull("cell_index")
+    x <- x %>% filter(! .data$cell_index %in% !!index)
   }
 
-  dA <- x %>% filter(chain == "TRA")
-  dB <- x %>% filter(chain == "TRB")
+  dA <- x %>% filter(.data$chain == "TRA")
+  dB <- x %>% filter(.data$chain == "TRB")
 
   dA <- remove_vdj_doublets(dA)
   dB <- remove_vdj_doublets(dB)
 
   d <- left_join(dA, dB, by = by, suffix = c(".a", ".b"))
   if (drop.na)
-    d <- d %>% drop_na(v_gene.a, j_gene.a, v_gene.b, j_gene.b)
+    d <- d %>% drop_na("v_gene.a", "j_gene.a", "v_gene.b", "j_gene.b")
 
   #class(d) <- c("tidy_vdj", class(d))
   d
@@ -39,7 +39,7 @@ tidy_vdj_10x <- function(x, by = "cell_index", drop.na = TRUE, drop.multi = TRUE
 #' @export
 #'
 remove_vdj_doublets <- function(x, cutoff = 1) {
-  index <- x %>% count(cell_index) %>% filter(n <= cutoff) %>% pull(cell_index)
-  x %>% filter(cell_index %in% index)
+  index <- x %>% count(.data$cell_index) %>% filter(n <= cutoff) %>% pull("cell_index")
+  x %>% filter(.data$cell_index %in% !!index)
 }
 

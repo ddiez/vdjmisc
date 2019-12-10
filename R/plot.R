@@ -23,7 +23,7 @@
 plot_vdj_usage <- function(x, cols = NULL, main = "", subtitle = paste(nrow(x), "sequences"), size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
   get_parallel_vdj(x, cols) %>%
     ggplot(
-      aes(x = x, split = y, value = n, id = id)) +
+      aes(x = .data$x, split = .data$y, value = .data$n, id = .data$id)) +
     geom_parallel_sets(fill = fill, alpha = alpha) +
     geom_parallel_sets_axes(axis.width = axis.width, fill = fill.vdj) +
     geom_parallel_sets_labels(size = size, angle = 0) +

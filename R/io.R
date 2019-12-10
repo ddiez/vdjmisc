@@ -10,7 +10,7 @@
 read_vdj_10x <- function(filename, productive.only = TRUE) {
   vdj <- read_csv(filename)
   if (productive.only)
-    vdj <- vdj %>% filter(productive == "True")
+    vdj <- vdj %>% filter(.data$productive == "True")
   vdj
 }
 
@@ -44,16 +44,16 @@ read_vdjdb_full <- function(filename, min.score = NULL, paired = TRUE) {
   vdj <- read_tsv(filename)
 
   vdj <- vdj %>% rename(
-    cdr3.a = cdr3.alpha,
-    v_gene.a = v.alpha,
-    j_gene.a = j.alpha,
-    cdr3.b = cdr3.beta,
-    v_gene.b = v.beta,
-    j_gene.b = j.beta
+    cdr3.a = .data$cdr3.alpha,
+    v_gene.a = .data$v.alpha,
+    j_gene.a = .data$j.alpha,
+    cdr3.b = .data$cdr3.beta,
+    v_gene.b = .data$v.beta,
+    j_gene.b = .data$j.beta
   )
 
   if (!is.null(min.score))
-    vdj <- vdj %>% filter(vdjdb.score >= min.score)
+    vdj <- vdj %>% filter(.data$vdjdb.score >= min.score)
 
   #vdj <- vdj %>% select("cdr3.a", "v_gene.a", "j_gene.a", "cdr3.b", "v_gene.b", "j_gene.b")
 
