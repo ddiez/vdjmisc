@@ -21,21 +21,27 @@
 #'
 #' @export
 #'
-plot_vdj_usage <- function(x, cols = NULL, split.by = NULL, title = "", subtitle = paste(nrow(x), "sequences"), size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
+plot_vdj_usage <- function(x, cols = NULL, split.by = NULL, title = NULL, subtitle = NULL, size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
 
   if (is.null(split.by)) {
+    if (is.null(subtitle)) {
+      subtitle <- paste(nrow(x), "sequences")
+    }
     plot_vdj_usage_raw(x, cols = cols, title = title, subtitle = subtitle, size = size, alpha = alpha, fill = fill, fill.vdj = fill.vdj, axis.width = axis.width, expand.x = expand.x, expand.y = expand.y)
   } else {
     x <- x %>% unite(".group", split.by, sep = "-")
     x <- split(x, x[[".group"]])
     pl <- lapply(names(x), function(n) {
+      if (is.null(subtitle)) {
+        subtitle <- paste(nrow(x[[n]]), "sequences")
+      }
       plot_vdj_usage_raw(x[[n]], cols = cols, title = n, subtitle = subtitle, size = size, alpha = alpha, fill = fill, fill.vdj = fill.vdj, axis.width = axis.width, expand.x = expand.x, expand.y = expand.y)
     })
     wrap_plots(pl)
   }
 }
 
-plot_vdj_usage_raw <- function(x, cols = NULL, title = "", subtitle = paste(nrow(x), "sequences"), size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
+plot_vdj_usage_raw <- function(x, cols = NULL, title = NULL, subtitle = paste(nrow(x), "sequences"), size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
   get_parallel_vdj(x, cols) %>%
     ggplot(
       aes(x = .data$x, split = .data$y, value = .data$n, id = .data$id)) +
