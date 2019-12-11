@@ -24,6 +24,7 @@ library(patchwork)
 theme_set(theme_minimal())
 ```
 
+# Plot 10x data
 
 ```{r}
 f <- list.files(file.path(system.file(package = "vdjmisc"), "extdata/10x"), full.names = TRUE)
@@ -62,20 +63,24 @@ vdj <- read_vdj_10x_batch(path, extension = "csv.gz")
 head(vdj)
 ```
 
+
 ```{r}
 vdj <- vdj %>% mutate(samplename = sub(".csv.gz", "", basename(filename)))
 head(vdj)
 ```
+
 
 ```{r}
 vdj <- vdj %>% mutate(barcode = paste(samplename, barcode, sep = ":"))
 head(vdj)
 ```
 
+
 ```{r}
 vdj_tidy <- tidy_vdj_10x(vdj)
 head(vdj_tidy)
 ```
+
 
 ```{r}
 plot_vdj_usage(vdj_tidy)
@@ -84,5 +89,30 @@ plot_vdj_usage(vdj_tidy)
 
 ```{r fig.height=8}
 plot_vdj_usage(vdj_tidy, split.by = "samplename.a")
+```
+
+# Plot VDJdb data
+
+## Reading the full file
+
+```{r}
+f <- list.files(file.path(system.file(package = "vdjmisc"), "extdata/vdjdb"), full.names = TRUE)
+f
+```
+
+
+```{r}
+vdjdb <- read_vdjdb_full(f, paired = TRUE)
+vdjdb
+```
+
+
+```{r}
+plot_vdj_usage(vdjdb)
+```
+
+
+```{r fig.height=8}
+plot_vdj_usage(vdjdb, split.by = "antigen.species", order = TRUE) + plot_layout(ncol = 2)
 ```
 
