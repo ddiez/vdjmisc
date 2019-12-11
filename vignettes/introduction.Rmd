@@ -92,7 +92,7 @@ vdj_list <- lapply(vdj_list, tidy_vdj_10x)
 pl <- lapply(vdj_list, plot_vdj_usage)
 
 pl <- lapply(names(vdj_list), function(name) {
-  plot_vdj_usage(vdj_list[[name]], main = name)
+  plot_vdj_usage(vdj_list[[name]], title = name)
 })
 patchwork::wrap_plots(pl)
 ```

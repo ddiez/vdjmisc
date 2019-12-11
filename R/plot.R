@@ -8,7 +8,7 @@
 #'
 #' @param x data.frame
 #' @param cols columns to include.
-#' @param main main title.
+#' @param title main title.
 #' @param subtitle subtitlte.
 #' @param size size of text in gene boxes.
 #' @param alpha alpha of gene boxes.
@@ -20,7 +20,7 @@
 #'
 #' @export
 #'
-plot_vdj_usage <- function(x, cols = NULL, main = "", subtitle = paste(nrow(x), "sequences"), size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
+plot_vdj_usage <- function(x, cols = NULL, title = "", subtitle = paste(nrow(x), "sequences"), size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
   get_parallel_vdj(x, cols) %>%
     ggplot(
       aes(x = .data$x, split = .data$y, value = .data$n, id = .data$id)) +
@@ -29,7 +29,7 @@ plot_vdj_usage <- function(x, cols = NULL, main = "", subtitle = paste(nrow(x), 
     geom_parallel_sets_labels(size = size, angle = 0) +
     scale_x_discrete(expand = c(0, expand.x), labels = c("j_gene.a" = expression("J"~alpha), "v_gene.a" = expression("V"~alpha), "v_gene.b" = expression("V"~beta), "j_gene.b" = expression("J"~beta))) +
     scale_y_discrete(expand = c(0, expand.y)) +
-    labs(x = "", y = "", title = main, subtitle = subtitle)
+    labs(x = "", y = "", title = title, subtitle = subtitle)
 }
 
 

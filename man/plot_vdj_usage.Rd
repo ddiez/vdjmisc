@@ -7,7 +7,7 @@
 plot_vdj_usage(
   x,
   cols = NULL,
-  main = "",
+  title = "",
   subtitle = paste(nrow(x), "sequences"),
   size = 3,
   alpha = 0.4,
@@ -23,7 +23,7 @@ plot_vdj_usage(
 
 \item{cols}{columns to include.}
 
-\item{main}{main title.}
+\item{title}{main title.}
 
 \item{subtitle}{subtitlte.}
 
