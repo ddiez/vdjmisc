@@ -68,7 +68,7 @@ head(vdj)
 ```
 
 ```{r}
-vdj <- vdj %>% mutate(cell_index = paste(samplename, barcode, sep = ":"))
+vdj <- vdj %>% mutate(barcode = paste(samplename, barcode, sep = ":"))
 head(vdj)
 ```
 
@@ -82,19 +82,7 @@ plot_vdj_usage(vdj_tidy)
 ```
 
 
-```{r}
-vdj_list <- split(vdj, vdj$samplename)
-vdj_list <- lapply(vdj_list, tidy_vdj_10x)
-```
-
-
 ```{r fig.height=8}
-pl <- lapply(vdj_list, plot_vdj_usage)
-
-pl <- lapply(names(vdj_list), function(name) {
-  plot_vdj_usage(vdj_list[[name]], title = name)
-})
-patchwork::wrap_plots(pl)
+plot_vdj_usage(vdj_tidy, split.by = "samplename.a")
 ```
-
 
