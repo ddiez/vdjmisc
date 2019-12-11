@@ -7,6 +7,7 @@
 plot_vdj_usage(
   x,
   cols = NULL,
+  split.by = NULL,
   title = "",
   subtitle = paste(nrow(x), "sequences"),
   size = 3,
@@ -22,6 +23,8 @@ plot_vdj_usage(
 \item{x}{data.frame}
 
 \item{cols}{columns to include.}
+
+\item{split.by}{combine and split the vdj plot by this columns.}
 
 \item{title}{main title.}
 
