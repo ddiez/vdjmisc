@@ -4,7 +4,7 @@
 \alias{tidy_vdj_10x}
 \title{tidy_vdj_10x}
 \usage{
-tidy_vdj_10x(x, by = "cell_index", drop.na = TRUE, drop.multi = TRUE)
+tidy_vdj_10x(x, by = "barcode", drop.na = TRUE, drop.multi = TRUE)
 }
 \arguments{
 \item{x}{data.frame with VDJ data.}

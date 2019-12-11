@@ -4,10 +4,12 @@
 \alias{remove_vdj_doublets}
 \title{remove_vdj_doublets}
 \usage{
-remove_vdj_doublets(x, cutoff = 1)
+remove_vdj_doublets(x, by = "barcode", cutoff = 1)
 }
 \arguments{
 \item{x}{data.frame.}
+
+\item{by}{column to use as index.}
 
 \item{cutoff}{cutoff for doublets.}
 }

@@ -9,23 +9,22 @@
 #'
 #' @export
 #'
-tidy_vdj_10x <- function(x, by = "cell_index", drop.na = TRUE, drop.multi = TRUE) {
+tidy_vdj_10x <- function(x, by = "barcode", drop.na = TRUE, drop.multi = TRUE) {
   if (drop.multi) {
-    index <- x %>% filter(.data$chain == "Multi") %>% pull("cell_index")
-    x <- x %>% filter(! .data$cell_index %in% !!index)
+    index <- x %>% filter(.data$chain == "Multi") %>% pull(by)
+    x <- x %>% filter(! .data[[by]] %in% !!index)
   }
 
   dA <- x %>% filter(.data$chain == "TRA")
   dB <- x %>% filter(.data$chain == "TRB")
 
-  dA <- remove_vdj_doublets(dA)
-  dB <- remove_vdj_doublets(dB)
+  dA <- remove_vdj_doublets(dA, by = by)
+  dB <- remove_vdj_doublets(dB, by = by)
 
   d <- left_join(dA, dB, by = by, suffix = c(".a", ".b"))
   if (drop.na)
     d <- d %>% drop_na("v_gene.a", "j_gene.a", "v_gene.b", "j_gene.b")
 
-  #class(d) <- c("tidy_vdj", class(d))
   d
 }
 
@@ -34,12 +33,13 @@ tidy_vdj_10x <- function(x, by = "cell_index", drop.na = TRUE, drop.multi = TRUE
 #' Remove potential VDJ doublets by making sure there is at much 2 gene variants per cell.
 #'
 #' @param x data.frame.
+#' @param by column to use as index.
 #' @param cutoff cutoff for doublets.
 #'
 #' @export
 #'
-remove_vdj_doublets <- function(x, cutoff = 1) {
-  index <- x %>% count(.data$cell_index) %>% filter(n <= cutoff) %>% pull("cell_index")
-  x %>% filter(.data$cell_index %in% !!index)
+remove_vdj_doublets <- function(x, by = "barcode", cutoff = 1) {
+  index <- x %>% count(.data[[by]]) %>% filter(n <= cutoff) %>% pull(by)
+  x %>% filter(.data[[by]] %in% !!index)
 }
 
