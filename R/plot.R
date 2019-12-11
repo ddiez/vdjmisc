@@ -18,10 +18,11 @@
 #' @param axis.width width of gene boxes.
 #' @param expand.x expand x axis by this amount.
 #' @param expand.y expand y axis by this amount.
+#' @param order whether to sort the plots by number of sequences when using split.by.
 #'
 #' @export
 #'
-plot_vdj_usage <- function(x, cols = NULL, split.by = NULL, title = NULL, subtitle = NULL, size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5) {
+plot_vdj_usage <- function(x, cols = NULL, split.by = NULL, title = NULL, subtitle = NULL, size = 3, alpha = .4, fill = "violetred", fill.vdj = "limegreen", axis.width = .3, expand.x = 0.1, expand.y = 5, order = FALSE) {
 
   if (is.null(split.by)) {
     if (is.null(subtitle)) {
@@ -31,6 +32,10 @@ plot_vdj_usage <- function(x, cols = NULL, split.by = NULL, title = NULL, subtit
   } else {
     x <- x %>% unite(".group", split.by, sep = "-")
     x <- split(x, x[[".group"]])
+
+    if (order)
+      x <- x[order(sapply(x, nrow), decreasing = TRUE)]
+
     pl <- lapply(names(x), function(n) {
       if (is.null(subtitle)) {
         subtitle <- paste(nrow(x[[n]]), "sequences")

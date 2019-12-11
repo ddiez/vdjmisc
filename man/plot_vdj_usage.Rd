@@ -16,7 +16,8 @@ plot_vdj_usage(
   fill.vdj = "limegreen",
   axis.width = 0.3,
   expand.x = 0.1,
-  expand.y = 5
+  expand.y = 5,
+  order = FALSE
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ plot_vdj_usage(
 \item{expand.x}{expand x axis by this amount.}
 
 \item{expand.y}{expand y axis by this amount.}
+
+\item{order}{whether to sort the plots by number of sequences when using split.by.}
 }
 \description{
 Plot V/J gene usage in alpha/beta chains
