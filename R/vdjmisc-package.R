@@ -6,4 +6,5 @@
 ## usethis namespace: start
 ## usethis namespace: end
 #' @import tibble tidyr dplyr ggplot2 ggforce readr fs
+#' @importFrom patchwork wrap_plots
 NULL

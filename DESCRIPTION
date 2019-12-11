@@ -14,8 +14,7 @@ LazyData: true
 RoxygenNote: 7.0.2
 Suggests: 
     knitr,
-    rmarkdown,
-    patchwork
+    rmarkdown
 VignetteBuilder: knitr
 Imports: 
     tibble,
@@ -24,4 +23,5 @@ Imports:
     readr,
     ggplot2,
     ggforce,
-    fs
+    fs,
+    patchwork
