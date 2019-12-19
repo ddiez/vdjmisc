@@ -16,15 +16,15 @@
 #'
 compute_vdj_qc <- function(x, barcode.col= "barcode", chain.col = "chain", max.alpha = 1, max.beta = 1, drop_multi = TRUE, check_valid = TRUE) {
   if (drop_multi)
-    x <- x %>% filter(chain != "Multi")
+    x <- x %>% filter(.data[["chain"]] != "Multi")
 
   doublet <- x %>% group_by_at(.vars = c(barcode.col, chain.col)) %>% summarize(alleles = n())
-  doublet <- doublet %>% spread(chain, alleles, fill = 0)
+  doublet <- doublet %>% spread(.data[["chain"]], .data[["alleles"]], fill = 0)
 
   if (check_valid)
     doublet <- doublet %>%
-    mutate(valid = ifelse(TRA != 0 & TRB != 0, TRUE, FALSE))
+    mutate(valid = ifelse(.data[["TRA"]] != 0 & .data[["TRB"]] != 0, TRUE, FALSE))
 
   doublet %>%
-    mutate(doublet = ifelse(TRA > max.alpha | TRB > max.beta, TRUE, FALSE))
+    mutate(doublet = ifelse(.data[["TRA"]] > max.alpha | .data[["TRB"]] > max.beta, TRUE, FALSE))
 }
