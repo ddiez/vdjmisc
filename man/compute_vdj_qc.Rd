@@ -10,8 +10,7 @@ compute_vdj_qc(
   chain.col = "chain",
   max.alpha = 1,
   max.beta = 1,
-  drop_multi = TRUE,
-  check_valid = TRUE
+  drop_multi = TRUE
 )
 }
 \arguments{
@@ -26,8 +25,6 @@ compute_vdj_qc(
 \item{max.beta}{maximum number of beta chains for singletons.}
 
 \item{drop_multi}{drop chain "Multi" from 10x VDJ data.}
-
-\item{check_valid}{logical; whether to check for validity.}
 }
 \value{
 a data.frame containing QC information for each barcode/chain.

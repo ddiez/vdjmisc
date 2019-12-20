@@ -9,21 +9,19 @@
 #' @param max.alpha maximum number of alpha chains for singletons.
 #' @param max.beta maximum number of beta chains for singletons.
 #' @param drop_multi drop chain "Multi" from 10x VDJ data.
-#' @param check_valid logical; whether to check for validity.
 #'
 #' @return a data.frame containing QC information for each barcode/chain.
 #' @export
 #'
-compute_vdj_qc <- function(x, barcode.col= "barcode", chain.col = "chain", max.alpha = 1, max.beta = 1, drop_multi = TRUE, check_valid = TRUE) {
+compute_vdj_qc <- function(x, barcode.col= "barcode", chain.col = "chain", max.alpha = 1, max.beta = 1, drop_multi = TRUE) {
   if (drop_multi)
     x <- x %>% filter(.data[["chain"]] != "Multi")
 
   doublet <- x %>% group_by_at(.vars = c(barcode.col, chain.col)) %>% summarize(alleles = n())
   doublet <- doublet %>% spread(.data[["chain"]], .data[["alleles"]], fill = 0)
 
-  if (check_valid)
-    doublet <- doublet %>%
-    mutate(valid = ifelse(.data[["TRA"]] != 0 & .data[["TRB"]] != 0, TRUE, FALSE))
+  doublet <- doublet %>%
+    mutate(paired = ifelse(.data[["TRA"]] != 0 & .data[["TRB"]] != 0, TRUE, FALSE))
 
   doublet %>%
     mutate(doublet = ifelse(.data[["TRA"]] > max.alpha | .data[["TRB"]] > max.beta, TRUE, FALSE))
