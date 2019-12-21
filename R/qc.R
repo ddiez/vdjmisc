@@ -17,7 +17,7 @@ compute_vdj_qc <- function(x, barcode.col= "barcode", chain.col = "chain", max.a
   if (drop_multi)
     x <- x %>% filter(.data[["chain"]] != "Multi")
 
-  doublet <- x %>% group_by_at(.vars = c(barcode.col, chain.col)) %>% summarize(alleles = n())
+  doublet <- x %>% group_by_at(.vars = c(barcode.col, chain.col)) %>% summarize(alleles = n()) %>% ungroup()
   doublet <- doublet %>% spread(.data[["chain"]], .data[["alleles"]], fill = 0)
 
   doublet <- doublet %>%
