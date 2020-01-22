@@ -18,9 +18,6 @@ tidy_vdj_10x <- function(x, by = "barcode", drop.na = TRUE, drop.multi = TRUE) {
   dA <- x %>% filter(.data$chain == "TRA")
   dB <- x %>% filter(.data$chain == "TRB")
 
-  dA <- remove_vdj_doublets(dA, by = by)
-  dB <- remove_vdj_doublets(dB, by = by)
-
   d <- left_join(dA, dB, by = by, suffix = c(".a", ".b"))
   if (drop.na)
     d <- d %>% drop_na("v_gene.a", "j_gene.a", "v_gene.b", "j_gene.b")
