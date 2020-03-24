@@ -1,19 +1,13 @@
 context("tidy_vdj_10x")
 
-f <- list.files(file.path(system.file(package = "vdjmisc"), "extdata/10x"), full.names = TRUE)
+d <- data.frame(barcode = c("bc1", "bc1", "bc2", "bc2", "bc2", "bc3", "bc4", "bc5", "bc5"))
+d$v_gene <- c("TRAV1", "TRBV1", "TRAV1", "TRBV2", "TRBV3", "TRAV2", "TRBV1", "TRAV2", "TRAV3")
+d$j_gene <- c("TRAJ1", "TRBJ2", "TRAJ2", "TRBJ2", "TRBJ1", "TRAJ2", "TRBJ2", "TRAJ2", "TRAJ5")
+d$chain <- c("TRA", "TRB", "TRA", "TRB", "TRB", "TRA", "TRB", "TRA", "TRA")
 
-vdj <- read_vdj_10x(f[1])
-tidy_vdj <- tidy_vdj_10x(vdj)
+tidy_vdj <- tidy_vdj_10x(d)
 
 test_that("tidy_vdj_10x works", {
-  expect_equal(dim(tidy_vdj), c(18, 35))
+  expect_equal(dim(tidy_vdj), c(3, 7))
 })
 
-path <- file.path(system.file(package = "vdjmisc"), "extdata/10x")
-vdj <- read_vdj_10x_batch(path, extension = "csv.gz")
-vdj <- vdj %>% mutate(barcode = paste(filename, barcode, sep = ":"))
-tidy_vdj <- tidy_vdj_10x(vdj)
-
-test_that("tidy_vdj_10x works on batch", {
-  expect_equal(dim(tidy_vdj), c(82, 37))
-})
