@@ -4,10 +4,12 @@
 \alias{clonotype_size}
 \title{clonotype_size}
 \usage{
-clonotype_size(x, by = "barcode")
+clonotype_size(x, keep = "barcode")
 }
 \arguments{
 \item{x}{a tidy VDJ object}
+
+\item{keep}{keep this column(s) when reporting clonotype sizes.}
 }
 \description{
 clonotype_size
