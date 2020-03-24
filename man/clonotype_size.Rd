@@ -4,7 +4,7 @@
 \alias{clonotype_size}
 \title{clonotype_size}
 \usage{
-clonotype_size(x)
+clonotype_size(x, by = "barcode")
 }
 \arguments{
 \item{x}{a tidy VDJ object}
