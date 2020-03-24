@@ -25,4 +25,5 @@ Imports:
     ggplot2,
     ggforce,
     fs,
-    patchwork
+    patchwork,
+    jsonlite
