@@ -1,6 +1,6 @@
 Package: vdjmisc
 Title: Miscellaneus Tools for The Analysis of Immune Repertoires
-Version: 0.0.5.9000
+Version: 0.0.6.9000
 Authors@R: 
     person(given = "Diego",
            family = "Diez",
