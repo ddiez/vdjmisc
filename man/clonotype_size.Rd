@@ -14,3 +14,6 @@ clonotype_size(x, keep = "barcode")
 \description{
 clonotype_size
 }
+\note{
+This function now calls add_clonotype_id() and add_clonotype_size(). Kepts for compatibility reason. Will deprecate.
+}

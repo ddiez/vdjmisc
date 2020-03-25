@@ -26,4 +26,5 @@ Imports:
     ggforce,
     fs,
     patchwork,
-    jsonlite
+    jsonlite,
+    rlang
