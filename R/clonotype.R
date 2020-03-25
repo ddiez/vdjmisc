@@ -19,7 +19,19 @@ clonotype_size <- function(x, keep = "barcode") {
 #'
 #' @export
 add_clonotype_id <- function(x, name = "clonotype_id") {
-  x %>% mutate(!!name := paste(.data$v_gene.a, .data$d_gene.a, .data$j_gene.a, .data$cdr3.a, .data$cdr3.b, .data$v_gene.b, .data$d_gene.b, .data$j_gene.b, sep = "_"))
+  x %>% mutate(
+    !!name := paste(
+      .data$c_gene.a,
+      .data$j_gene.a,
+      .data$d_gene.a,
+      .data$v_gene.a,
+      .data$cdr3.a,
+      .data$cdr3.b,
+      .data$v_gene.b,
+      .data$d_gene.b,
+      .data$j_gene.b,
+      .data$c_gene.b,
+      sep = "_"))
 }
 
 #' add_clonotype_size
