@@ -13,7 +13,7 @@
 #' @return a data.frame containing QC information for each barcode/chain.
 #' @export
 #'
-compute_vdj_qc <- function(x, barcode.col= "barcode", chain.col = "chain", max.alpha = 1, max.beta = 1, drop_multi = TRUE) {
+compute_vdj_qc <- function(x, barcode.col = "barcode", chain.col = "chain", max.alpha = 1, max.beta = 1, drop_multi = TRUE) {
   if (drop_multi)
     x <- x %>% filter(.data[["chain"]] != "Multi")
 
