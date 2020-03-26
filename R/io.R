@@ -9,8 +9,13 @@
 #'
 read_vdj_10x <- function(filename, productive.only = TRUE) {
   vdj <- read_csv(filename)
+
+  if (! is.logical(vdj$productive)) {
+    vdj$productive <- as.logical(vdj$productive)
+  }
+
   if (productive.only)
-    vdj <- vdj %>% filter(.data$productive == "True")
+    vdj <- vdj %>% filter(.data$productive)
   vdj
 }
 
