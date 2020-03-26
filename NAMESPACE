@@ -2,6 +2,7 @@
 
 export(add_clonotype_id)
 export(add_clonotype_size)
+export(add_vdj_qc)
 export(clonotype_size)
 export(compute_vdj_qc)
 export(plot_vdj_usage)
