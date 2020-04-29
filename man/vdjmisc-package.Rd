@@ -8,6 +8,14 @@
 \description{
 Miscellaneus Tools for The Analysis of Immune Repertoires.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ddiez/vdjmisc}
+  \item Report bugs at \url{https://github.com/ddiez/vdjmisc/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Diego Diez \email{diego10ruiz@gmail.com} (\href{https://orcid.org/0000-0002-2325-4893}{ORCID})
 
