@@ -1,5 +1,6 @@
 ---
 output: github_document
+title: vdjmisc
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -12,8 +13,6 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-
-# vdjmisc
 
 [![R build status](https://github.com/ddiez/vdjmisc/workflows/R-CMD-check/badge.svg)](https://github.com/ddiez/vdjmisc/actions)
 [![Codecov test coverage](https://codecov.io/gh/ddiez/vdjmisc/branch/master/graph/badge.svg)](https://codecov.io/gh/ddiez/vdjmisc?branch=master)

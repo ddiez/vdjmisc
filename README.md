@@ -1,7 +1,7 @@
+vdjmisc
+================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# vdjmisc
 
 [![R build
 status](https://github.com/ddiez/vdjmisc/workflows/R-CMD-check/badge.svg)](https://github.com/ddiez/vdjmisc/actions)
