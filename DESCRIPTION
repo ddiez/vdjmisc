@@ -11,7 +11,7 @@ Description: Miscellaneus Tools for The Analysis of Immune Repertoires.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     rmarkdown,
